@@ -1,0 +1,166 @@
+===========================================
+Soal Ujian Akhir Semester
+Matkul : Arsitektu dan organisasi Komputer
+Kelas : TI.17.D3 & TI.17.D4
+Universitas Pelita Bangsa
+2020
+===========================================
+===========================================
+Nama     : Mohamad Ibnu Hablilah
+NIM      : 311710304
+Kelas    : TI.17.D4
+===========================================
+
+1. Dalam arsitektur komputer ada 4 komponen Utama CPU, Sebutkan dan jelaskan kegunanaanya?
+2. Control Unit adalah bagian dari komputer yang menggenerasi signal yang mengontrol operasi
+komputer, sebutkan jenis apa saja yang termasuk Control Unit?
+3. Set instruksi (instruction set) adalah sekumpulan lengkap instruksi yang dapat di mengerti oleh sebuah
+CPU. Set instruksi sering juga disebut sebagai bahasa mesin . sebutkan macam-macam format
+Instruksi?
+4. Direct Memory Access (DMA) adalah suatu metode transfer data dari memori komputer atau RAM ke
+suatu bagian dari komputer tanpa memprosesnya menggunakan CPU. Sebutkan kelebihan
+menggunakan DMA ?
+5. Pipeline adalah mesin yang melaksanakan beberapa komputasi yang berbeda secara bersama-sama
+,namun pada saat itu setiap komputasi akan berada dalam tahapan eksekusi yang berbeda. Sebutkan
+dua kategori Pipeline ?
+
+Jawaban:
+
+1. Komponen utama CPU :
+
+A. ALU (Arithmatic Logical Unit)
+
+Salah satu bagian/komponen dalam di dalam sistem komputer yang  berfungsi melakukan operasi/perhitungan aritmatika dan logika (penjumlahan,
+pengurangan dan beberapa logika lain).
+
+B. CU (Control Unit)
+
+Merupakan salah satu bagian dari CPU yang bertugas untuk memberikan arahan/kendali/ kontrol terhadap 
+operasi yang dilakukan oleh ALU (Arithmetic Logical Unit) di dalam CPU.
+
+Fungsi Control Unit :
+
+- Mengatur & mengendalikan alat-alat input dan output.
+- Mengambil instruksi-instruksi dari memori utama.
+- Mengambil data dari memori utama (jika diperlukan).
+- Mengirim instruksi ke ALU bila ada perhitungan aritmatika atau perbandingan logika serta mengawasi kerja dari ALU.
+- Menyimpan hasil proses ke memori utama.
+ 
+ C. Register
+
+Merupakan memori yang terdapat di dalam CPU, register adalah Alat penyimpanan kecil dgn kecepatan akses yang tinggi, yangg digunakan untuk menyimpan data dan instruksi yang sedang diproses, sementara data dan instruksi lainnya menunggu giliran untuk diproses, masih disimpan di dalam memori utama.
+
+Jenis Jenis Register :
+
+- Instruction Register (IR) digunakan untuk menyimpan instruksi yang sedang diproses.
+- Program Counter (PC) digunakan untuk menyimpan alamat lokasi dari memori utama yang berisi instruksi yang sedang diproses.  Selama pemrosesan instruksi, isi PC diubah menjadi alamat dari memori utama yang berisi instruksi berikutnya.
+- General purpose register, punya kegunaan umum yang berhubungan dengan data yang sedang diproses.  Contoh, yg digunakan untuk menampung data disebut operand register, untuk menampung hasil disebut accumulator.
+- Memory data register (MDR) digunakan untuk menampung data atau instruksi hasil pengiriman dari memori utama ke CPU atau menampung data yg akan direkam ke memori utama, hasil pengolahan oleh CPU.
+- Memory address register (MAR) digunakan untuk menampung alamat data atau instruksi pada memori utama yg akan diambil atau yg akan diletakkan.
+
+D. CPU Interconection
+
+Merupakan alur transefer data/perintah yang diberikan yang menghubungkan ALU, CU dan REGISTER.
+
+
+
+
+
+2. Jenis/macam Control Unit:
+A. Single-Cycle CU
+Proses di CUl ini hanya terjadi dalam satu clock cycle, artinya setiap instruksi ada pada satu cycle, maka dari itu tidak memerlukan state. Dengan demikian fungsi boolean masing-masing control line hanya merupakan fungsi dari opcode saja. Clock cycle harus mempunyai panjang yang sama untuk setiap jenis instruksi. Ada dua bagian pada unit kontrol ini, yaitu proses men-decodeopcode untuk mengelompokkannya menjadi 4 macam instruksi (yaitu di gerbang AND), dan pemberian sinyal kontrol berdasarkan jenis instruksinya (yaitu gerbang OR). Keempat jenis instruksi adalah “R-format” (berhubungan dengan register), “lw” (membaca memori), “sw” (menulis ke memori), dan “beq” (branching). Sinyal kontrol yang dihasilkan bergantung pada jenis instruksinya. Misalnya jika melibatkan memori ”R-format” atau ”lw” maka akan sinyal ”Regwrite” akan aktif. Hal lain jika melibatkan memori “lw” atau “sw” maka akan diberi sinyal kontrol ke ALU, yaitu “ALUSrc”. Desain single-cycle ini lebih dapat bekerja dengan baik dan benar tetapi cycle ini tidak efisien.
+
+B. Multi-Cycle CUa
+Unit kontrol yang multi-cycle lebih memiliki banyak fungsi. Dengan memperhatikan state dan opcode, fungsi boolean dari masing-masing outputcontrol line dapat ditentukan. Masing-masingnya akan menjadi fungsi dari 10 buah input logic. Jadi akan terdapat banyak fungsi boolean, dan masing-masingnya tidak sederhana. Pada cycle ini, sinyal kontrol tidak lagi ditentukan dengan melihat pada bit-bit instruksinya. Bit-bit opcode memberitahukan operasi apa yang selanjutnya akan dijalankan CPU, bukan instruksi cycle selanjutnya. 
+
+
+
+
+3. Format Intruksi:
+OpCode  -  Operand Reference - Operand Reference
+
+Bentuk instruksi:
+
+- Format instruksi 3 alamat
+Mempunyai bentuk umum seperti : [OPCODE][AH],[AO1],[AO2]. Terdiri dari satu alamt hasil, dan dua alamat operand, misal SUB Y,A,B Yang mempunyai arti dalam bentuk algoritmik : Y := A — B dan arti dalam bentuk penjelasan : kurangkan isi reg a dengan isi reg B, kemudian simpan hasilnya di reg Y. bentuk bentuk pada format ini tidak umum digunakan di dalam computer, tetapi tidak dimungkinkan ada pengunaanya, dalam peongoprasianya banyak register sekaligus dan program lebih pendek.
+Contoh:
+A, B, C, D, E, T, Y adalah register
+Program: Y = (A — B) / ( C + D × E)
+SUB Y, A, B Y := A — B
+MPY T, D, E T := D × E
+ADD T, T, C T := T + C
+DIV Y, Y, T Y:= Y / T
+Memerlukan 4 operasi
+
+
+- Format instruksi 2 alamat
+Mempunyai bentuk umum : [OPCODE][AH],[AO]. Terdiri dari satu alamat hasil merangkap operand, satu alamat operand, missal : SUB Y,B yang mempunyai arti dalam algoritmik : Y:= Y — B dan arti dalam bentuk penjelasan : kurangkan isi reg Y dengan isi reg B, kemudian simpan hasillnya di reg Y. bentuk bentuk format ini masih digunakan di computer sekarang, untuk mengoprasikan lebih sedikit register, tapi panjang program tidak bertambah terlalu banyak.
+Contoh :
+A, B, C, D, E, T, Y adalah register
+Program: Y = (A — B) / ( C + D × E)
+MOVE Y, A Y := A
+SUB Y, B Y := Y — B
+MOVE T, D T := D
+MPY T, E T := T × E
+ADD T, C T := T + C
+DIV Y, T Y:= Y / T
+Memerlukan 6 operasi
+
+
+- Format instruksi 1 alamat
+Mempunyai bentuk umum : [OPCODE][AO]. Terdiri dari satu alamat operand, hasil disimpan di accumulator, missal : SUB B yang mempunyai arti dalam algoritmik : AC:= AC — B dan arti dalam bentuk penjelasan : kurangkan isi Acc dengan isi reg B, kemudian simpan hasillnya di reg Acc. bentuk bentuk format ini masih digunakan di computer jaman dahulu, untuk mengoprasikan di perlukan satu register, tapi panjang program semakin bertambah.
+Contoh :
+A, B, C, D, E, Y adalah register
+Program: Y = (A — B) / ( C + D × E)
+LOAD D AC := D
+MPY E AC := AC × E
+ADD C AC := AC + C
+STOR Y Y := AC
+LOAD A AC := A
+SUB B AC := AC — B
+DIV Y AC := AC / Y
+STOR Y Y := AC
+Memerlukan 8 operasi
+
+
+- Format instruksi 0 alamat
+Mempunyai bentuk umum : [OPCODE]. Terdiri dari semua alamat operand implicit, disimpan dalam bentuk stack. Operasi yang biasanya membutuhkan 2 operand, akan mengambil isi stack paling atas dan dibawahnya missal : SUB yang mempunyai arti dalam algoritmik : S[top]:=S[top-1]-S[top] dan arti dalam bentuk penjelasan : kurangkan isi stack no2 dari atas dengan isi stack paling atas, kemudian simpan hasilnya di stack paling atas, untuk mengoprasikan ada beberapa instruksi khusus stack PUSH dan POP.
+Contoh :
+A, B, C, D, E, Y adalah register
+Program: Y = (A — B) / ( C + D × E)
+PUSH A S[top] := A
+PUSH B S[top] := B
+SUB S[top] := A — B
+PUSH C S[top] := C
+PUSH D S[top] := D
+PUSH E S[top] := E
+MPY S[top] := D × E
+ADD S[top] := C + S[top]
+DIV S[top] := (A — B) /S[top]
+POP Y Out := S[top]
+
+
+4. Kelebihan menggunakan DMA:
+a. Dapat menirukan sebagian fungsi processor.
+b. Dapat mengambil alih fungsi processor yang berhubungan dengan transfer data.
+c. CPU dapat melakukan menejemen operasi baca tulis (transfer data) dengan baik dan juga dapat menyelesaikan instruksi yang lain.
+d. Mendapat informasi tentang jumlah data bit yang ditransfer, alamat dari device dan memory yang diperlukan dan arah dari aliran data.
+
+
+5. Dua kategori Pipeline yaitu:
+a. Pipeline Unit Arithmetic
+Berguna untuk operasi vektor
+
+Pengembangan pipeline aritmetik dapat dilihat dari perkalian biner unsigned
+Operasi shift dan penambahan menjadi tahapan pemrosesan dalam pengali pipelined. Pengalian bilangan biner dengan 2n adalah sama dengan menggesernya ke kiri sebesar n bit dan menyisipkan nol pada sebelah kanannya
+
+b. Pipeline Unit Instruction
+Berguna untuk komputer yang mempunyai set instruksi yang sederhana
+
+Tujuan pipeline instruksi adalah untuk memaksimalkan kecepatan mengalirnya instruksi
+Jumlah event yang dapat mengurangi kecepatan instruksi dalam mengalir melalui pipeline, diantaranya yaitu :
+1). Unit fungsional harus dapat bekerja sama dengan unit instruksi
+2). Inter Instruction dependencies (keterganungan antar instruksi)
+3). Unit instruksi harus secara logis menjalankan beberapa instruksi
+
+
