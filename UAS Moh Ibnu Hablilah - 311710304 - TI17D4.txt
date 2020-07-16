@@ -48,14 +48,18 @@ Fungsi Control Unit :
  
  C. Register
 
-Merupakan memori yang terdapat di dalam CPU, register adalah Alat penyimpanan kecil dgn kecepatan akses yang tinggi, yangg digunakan untuk menyimpan data dan instruksi yang sedang diproses, sementara data dan instruksi lainnya menunggu giliran untuk diproses, masih disimpan di dalam memori utama.
+Merupakan memori yang terdapat di dalam CPU, register adalah Alat penyimpanan kecil dgn kecepatan akses yang tinggi,
+yangg digunakan untuk menyimpan data dan instruksi yang sedang diproses, sementara data dan instruksi lainnya menunggu giliran untuk diproses, masih disimpan di dalam memori utama.
 
 Jenis Jenis Register :
 
 - Instruction Register (IR) digunakan untuk menyimpan instruksi yang sedang diproses.
-- Program Counter (PC) digunakan untuk menyimpan alamat lokasi dari memori utama yang berisi instruksi yang sedang diproses.  Selama pemrosesan instruksi, isi PC diubah menjadi alamat dari memori utama yang berisi instruksi berikutnya.
-- General purpose register, punya kegunaan umum yang berhubungan dengan data yang sedang diproses.  Contoh, yg digunakan untuk menampung data disebut operand register, untuk menampung hasil disebut accumulator.
-- Memory data register (MDR) digunakan untuk menampung data atau instruksi hasil pengiriman dari memori utama ke CPU atau menampung data yg akan direkam ke memori utama, hasil pengolahan oleh CPU.
+- Program Counter (PC) digunakan untuk menyimpan alamat lokasi dari memori utama yang berisi instruksi yang sedang diproses.  Selama pemrosesan instruksi, 
+isi PC diubah menjadi alamat dari memori utama yang berisi instruksi berikutnya.
+- General purpose register, punya kegunaan umum yang berhubungan dengan data yang sedang diproses.  Contoh, yg digunakan untuk menampung data disebut operand register, 
+untuk menampung hasil disebut accumulator.
+- Memory data register (MDR) digunakan untuk menampung data atau instruksi hasil pengiriman dari memori utama ke CPU atau menampung data yg akan direkam ke memori utama, 
+hasil pengolahan oleh CPU.
 - Memory address register (MAR) digunakan untuk menampung alamat data atau instruksi pada memori utama yg akan diambil atau yg akan diletakkan.
 
 D. CPU Interconection
@@ -68,10 +72,18 @@ Merupakan alur transefer data/perintah yang diberikan yang menghubungkan ALU, CU
 
 2. Jenis/macam Control Unit:
 A. Single-Cycle CU
-Proses di CUl ini hanya terjadi dalam satu clock cycle, artinya setiap instruksi ada pada satu cycle, maka dari itu tidak memerlukan state. Dengan demikian fungsi boolean masing-masing control line hanya merupakan fungsi dari opcode saja. Clock cycle harus mempunyai panjang yang sama untuk setiap jenis instruksi. Ada dua bagian pada unit kontrol ini, yaitu proses men-decodeopcode untuk mengelompokkannya menjadi 4 macam instruksi (yaitu di gerbang AND), dan pemberian sinyal kontrol berdasarkan jenis instruksinya (yaitu gerbang OR). Keempat jenis instruksi adalah “R-format” (berhubungan dengan register), “lw” (membaca memori), “sw” (menulis ke memori), dan “beq” (branching). Sinyal kontrol yang dihasilkan bergantung pada jenis instruksinya. Misalnya jika melibatkan memori ”R-format” atau ”lw” maka akan sinyal ”Regwrite” akan aktif. Hal lain jika melibatkan memori “lw” atau “sw” maka akan diberi sinyal kontrol ke ALU, yaitu “ALUSrc”. Desain single-cycle ini lebih dapat bekerja dengan baik dan benar tetapi cycle ini tidak efisien.
+Proses di CUl ini hanya terjadi dalam satu clock cycle, artinya setiap instruksi ada pada satu cycle, maka dari itu tidak memerlukan state. Dengan demikian fungsi boolean
+masing-masing control line hanya merupakan fungsi dari opcode saja. Clock cycle harus mempunyai panjang yang sama untuk setiap jenis instruksi. 
+Ada dua bagian pada unit kontrol ini, yaitu proses men-decodeopcode untuk mengelompokkannya menjadi 4 macam instruksi (yaitu di gerbang AND), 
+dan pemberian sinyal kontrol berdasarkan jenis instruksinya (yaitu gerbang OR). Keempat jenis instruksi adalah “R-format” (berhubungan dengan register), “lw” (membaca memori),
+“sw” (menulis ke memori), dan “beq” (branching). Sinyal kontrol yang dihasilkan bergantung pada jenis instruksinya. Misalnya jika melibatkan memori ”R-format” atau ”lw” maka
+akan sinyal ”Regwrite” akan aktif. Hal lain jika melibatkan memori “lw” atau “sw” maka akan diberi sinyal kontrol ke ALU, yaitu “ALUSrc”. Desain single-cycle ini lebih dapat
+bekerja dengan baik dan benar tetapi cycle ini tidak efisien.
 
 B. Multi-Cycle CUa
-Unit kontrol yang multi-cycle lebih memiliki banyak fungsi. Dengan memperhatikan state dan opcode, fungsi boolean dari masing-masing outputcontrol line dapat ditentukan. Masing-masingnya akan menjadi fungsi dari 10 buah input logic. Jadi akan terdapat banyak fungsi boolean, dan masing-masingnya tidak sederhana. Pada cycle ini, sinyal kontrol tidak lagi ditentukan dengan melihat pada bit-bit instruksinya. Bit-bit opcode memberitahukan operasi apa yang selanjutnya akan dijalankan CPU, bukan instruksi cycle selanjutnya. 
+Unit kontrol yang multi-cycle lebih memiliki banyak fungsi. Dengan memperhatikan state dan opcode, fungsi boolean dari masing-masing outputcontrol line dapat ditentukan. 
+Masing-masingnya akan menjadi fungsi dari 10 buah input logic. Jadi akan terdapat banyak fungsi boolean, dan masing-masingnya tidak sederhana. Pada cycle ini, sinyal kontrol 
+tidak lagi ditentukan dengan melihat pada bit-bit instruksinya. Bit-bit opcode memberitahukan operasi apa yang selanjutnya akan dijalankan CPU, bukan instruksi cycle selanjutnya. 
 
 
 
@@ -82,7 +94,10 @@ OpCode  -  Operand Reference - Operand Reference
 Bentuk instruksi:
 
 - Format instruksi 3 alamat
-Mempunyai bentuk umum seperti : [OPCODE][AH],[AO1],[AO2]. Terdiri dari satu alamt hasil, dan dua alamat operand, misal SUB Y,A,B Yang mempunyai arti dalam bentuk algoritmik : Y := A — B dan arti dalam bentuk penjelasan : kurangkan isi reg a dengan isi reg B, kemudian simpan hasilnya di reg Y. bentuk bentuk pada format ini tidak umum digunakan di dalam computer, tetapi tidak dimungkinkan ada pengunaanya, dalam peongoprasianya banyak register sekaligus dan program lebih pendek.
+Mempunyai bentuk umum seperti : [OPCODE][AH],[AO1],[AO2]. Terdiri dari satu alamt hasil, dan dua alamat operand, misal SUB Y,A,B Yang mempunyai arti dalam bentuk 
+algoritmik : Y := A — B dan arti dalam bentuk penjelasan : kurangkan isi reg a dengan isi reg B, kemudian simpan hasilnya di reg Y. bentuk bentuk pada format ini tidak umum 
+digunakan di dalam computer, tetapi tidak dimungkinkan ada pengunaanya, dalam peongoprasianya banyak register sekaligus dan program lebih pendek.
+
 Contoh:
 A, B, C, D, E, T, Y adalah register
 Program: Y = (A — B) / ( C + D × E)
@@ -94,7 +109,10 @@ Memerlukan 4 operasi
 
 
 - Format instruksi 2 alamat
-Mempunyai bentuk umum : [OPCODE][AH],[AO]. Terdiri dari satu alamat hasil merangkap operand, satu alamat operand, missal : SUB Y,B yang mempunyai arti dalam algoritmik : Y:= Y — B dan arti dalam bentuk penjelasan : kurangkan isi reg Y dengan isi reg B, kemudian simpan hasillnya di reg Y. bentuk bentuk format ini masih digunakan di computer sekarang, untuk mengoprasikan lebih sedikit register, tapi panjang program tidak bertambah terlalu banyak.
+Mempunyai bentuk umum : [OPCODE][AH],[AO]. Terdiri dari satu alamat hasil merangkap operand, satu alamat operand, missal : SUB Y,B yang mempunyai arti dalam 
+algoritmik : Y:= Y — B dan arti dalam bentuk penjelasan : kurangkan isi reg Y dengan isi reg B, kemudian simpan hasillnya di reg Y. bentuk bentuk format ini masih 
+digunakan di computer sekarang, untuk mengoprasikan lebih sedikit register, tapi panjang program tidak bertambah terlalu banyak.
+
 Contoh :
 A, B, C, D, E, T, Y adalah register
 Program: Y = (A — B) / ( C + D × E)
@@ -108,7 +126,10 @@ Memerlukan 6 operasi
 
 
 - Format instruksi 1 alamat
-Mempunyai bentuk umum : [OPCODE][AO]. Terdiri dari satu alamat operand, hasil disimpan di accumulator, missal : SUB B yang mempunyai arti dalam algoritmik : AC:= AC — B dan arti dalam bentuk penjelasan : kurangkan isi Acc dengan isi reg B, kemudian simpan hasillnya di reg Acc. bentuk bentuk format ini masih digunakan di computer jaman dahulu, untuk mengoprasikan di perlukan satu register, tapi panjang program semakin bertambah.
+Mempunyai bentuk umum : [OPCODE][AO]. Terdiri dari satu alamat operand, hasil disimpan di accumulator, missal : SUB B yang mempunyai arti dalam algoritmik : AC:= AC — B 
+dan arti dalam bentuk penjelasan : kurangkan isi Acc dengan isi reg B, kemudian simpan hasillnya di reg Acc. bentuk bentuk format ini masih digunakan di computer jaman dahulu,
+untuk mengoprasikan di perlukan satu register, tapi panjang program semakin bertambah.
+
 Contoh :
 A, B, C, D, E, Y adalah register
 Program: Y = (A — B) / ( C + D × E)
@@ -124,7 +145,10 @@ Memerlukan 8 operasi
 
 
 - Format instruksi 0 alamat
-Mempunyai bentuk umum : [OPCODE]. Terdiri dari semua alamat operand implicit, disimpan dalam bentuk stack. Operasi yang biasanya membutuhkan 2 operand, akan mengambil isi stack paling atas dan dibawahnya missal : SUB yang mempunyai arti dalam algoritmik : S[top]:=S[top-1]-S[top] dan arti dalam bentuk penjelasan : kurangkan isi stack no2 dari atas dengan isi stack paling atas, kemudian simpan hasilnya di stack paling atas, untuk mengoprasikan ada beberapa instruksi khusus stack PUSH dan POP.
+Mempunyai bentuk umum : [OPCODE]. Terdiri dari semua alamat operand implicit, disimpan dalam bentuk stack. Operasi yang biasanya membutuhkan 2 operand, akan mengambil isi 
+stack paling atas dan dibawahnya missal : SUB yang mempunyai arti dalam algoritmik : S[top]:=S[top-1]-S[top] dan arti dalam bentuk penjelasan : kurangkan isi stack no2 dari 
+atas dengan isi stack paling atas, kemudian simpan hasilnya di stack paling atas, untuk mengoprasikan ada beberapa instruksi khusus stack PUSH dan POP.
+
 Contoh :
 A, B, C, D, E, Y adalah register
 Program: Y = (A — B) / ( C + D × E)
@@ -152,7 +176,8 @@ a. Pipeline Unit Arithmetic
 Berguna untuk operasi vektor
 
 Pengembangan pipeline aritmetik dapat dilihat dari perkalian biner unsigned
-Operasi shift dan penambahan menjadi tahapan pemrosesan dalam pengali pipelined. Pengalian bilangan biner dengan 2n adalah sama dengan menggesernya ke kiri sebesar n bit dan menyisipkan nol pada sebelah kanannya
+Operasi shift dan penambahan menjadi tahapan pemrosesan dalam pengali pipelined. Pengalian bilangan biner dengan 2n adalah sama dengan menggesernya ke kiri sebesar n bit dan
+menyisipkan nol pada sebelah kanannya
 
 b. Pipeline Unit Instruction
 Berguna untuk komputer yang mempunyai set instruksi yang sederhana
